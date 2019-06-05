@@ -1,9 +1,17 @@
 # learningFlask
+To create a virtual env run the following command
+
+`python3 -m venv <virtualen_name>`
+
 
 This has a virtual env for flask to activate use the following command
 
-`. venv/bin/activate`
+`. <virtualen_name>/bin/activate`
 
+
+also to deactivate the virtual env 
+
+`deactivate`
 
 To run the application <br>
 First export the application environment variable<br>

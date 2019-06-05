@@ -1,7 +1,10 @@
 from flask import Flask
 from flask import jsonify
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+app.config["MONGO_URI"] = "mongodb://localhost:27017/testDB"
+mongo = PyMongo(app)
 
 
 @app.route('/')
@@ -19,6 +22,7 @@ def testing_the_world():
 def test_function():
     return 'this is dummy test function'
 
+
 @app.route('/testing/')
 def testing_function():
     return 'this is dummy testing function'
@@ -27,5 +31,14 @@ def testing_function():
 @app.route('/variables/<test_variable>')
 def show_variable(test_variable):
     return 'the test variable is %s' % test_variable
+
+
+@app.route('/testdata')
+def mongo_users():
+    data = mongo.db.testCollection.find({})
+    for value in data:
+        print(value)
+    return 'the dummy data is  %s' % value
+
 
 app.run()
