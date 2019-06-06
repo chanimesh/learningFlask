@@ -2,10 +2,12 @@ from flask import Flask
 from flask import jsonify
 from flask_pymongo import PyMongo
 
-app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/testDB"
-mongo = PyMongo(app)
 
+app = Flask(__name__)
+
+app.config.from_object('config')
+
+mongo = PyMongo(app)
 
 @app.route('/')
 def hello_world():
@@ -41,4 +43,3 @@ def mongo_users():
     return 'the dummy data is  %s' % value
 
 
-app.run()
